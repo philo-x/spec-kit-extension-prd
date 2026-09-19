@@ -4,23 +4,40 @@
 
 ---
 
-## 一、快速上手 (Quick Start)
+## 一、安装指南 (Installation)
 
-### 1. 安装扩展 (Installation)
-
-在已初始化 Spec Kit 的工程目录下，使用 `--dev` 参数进行本地安装：
+### Install Release Archive
+从已初始化 Spec Kit 的工程中安装 v0.1.0 发布包：
 
 ```bash
-# 从本地路径安装 prd 扩展
-specify extension add --dev /path/to/spec-kit-extension-prd
-
-# 验证安装是否成功
-specify extension list
+specify extension add prd --from https://github.com/philo-x/spec-kit-extension-prd/archive/refs/tags/v0.1.0.zip
 ```
 
-如果成功安装，`specify extension list` 输出将包含 `prd`，且当前集成的 AI 助手（如 Claude Code, Gemini CLI, Cursor）会自动加载以下命令：
-- `/speckit.prd.generate` (别名: `/speckit.prd.gen`)
-- `/speckit.prd.review`
+### Local Development
+本地开发模式安装：
+
+```bash
+specify extension add --dev /path/to/spec-kit-extension-prd
+```
+
+### Verify Installation
+验证扩展、命令与模板的加载状态：
+
+```bash
+specify extension list
+specify extension info prd
+```
+
+安装成功后，Spec Kit 会将以下命令注册至您当前的 AI Agent（Claude Code, Gemini CLI, Cursor, Windsurf 等）：
+- `/speckit.prd.generate` (别名: `/speckit.prd.gen`) — 编译生成 PRD
+- `/speckit.prd.review` — 8 维门禁一致性审计
+
+### Uninstall
+如需卸载扩展：
+
+```bash
+specify extension remove prd
+```
 
 ---
 

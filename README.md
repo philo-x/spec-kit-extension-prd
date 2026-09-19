@@ -246,31 +246,51 @@ product:
 
 ---
 
-## 八、安装与配置指南
+## 八、安装与配置指南 (Installation & Configuration)
 
-### 1. 本地安装
+### Installation
+
+Install the v0.1.0 release archive from a Spec Kit project:
 
 ```bash
-# 在已初始化 Spec Kit 的工程中运行
-specify extension add --dev /path/to/spec-kit-extension-prd
-
-# 查看已安装扩展
-specify extension list
+specify extension add prd --from https://github.com/philo-x/spec-kit-extension-prd/archive/refs/tags/v0.1.0.zip
 ```
 
-### 2. 配置自定义
+For local development:
 
-拷贝配置模板至项目配置目录：
+```bash
+specify extension add --dev /path/to/spec-kit-extension-prd
+```
+
+Verify the extension, its registered commands, and template:
+
+```bash
+specify extension list
+specify extension info prd
+```
+
+Remove the extension with:
+
+```bash
+specify extension remove prd
+```
+
+### Configuration
+
+The extension works out-of-the-box with sensible defaults. To customize:
+
+Copy the configuration template to your project:
 ```bash
 cp .specify/extensions/prd/prd-config.template.yml .specify/extensions/prd/prd-config.yml
 ```
 
-主要配置项：
-- `general.language`: 语言选择 (`zh-CN`, `en`, `auto`)
-- `policy.strict_separation`: 是否强制三层分离（默认 `true`）
-- `policy.no_how_leakage`: 是否严禁底层技术名词（默认 `true`）
-- `policy.preserve_unresolved`: 是否强制透传 `[NEEDS CLARIFICATION]`（默认 `true`）
-- `policy.traceability_matrix`: 是否生成第 13 节追溯矩阵（默认 `true`）
+Key configuration options in `prd-config.yml`:
+- `general.language`: Output language (`zh-CN`, `en`, `auto`)
+- `output.path`: Output file template (default: `specs/{feature}/product/prd.md`)
+- `policy.strict_separation`: Enforce Functional Requirements ≠ Business Rules ≠ Acceptance Criteria (`true`)
+- `policy.no_how_leakage`: Forbid implementation leaks such as SQL, schemas, or frameworks (`true`)
+- `policy.preserve_unresolved`: Pass through `[NEEDS CLARIFICATION]` verbatim (`true`)
+- `policy.traceability_matrix`: Generate Section 13 Traceability Matrix (`true`)
 
 ---
 
