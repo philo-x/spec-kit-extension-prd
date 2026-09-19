@@ -1,0 +1,51 @@
+schema_version: "1.0"
+
+extension:
+  id: "prd"
+  name: "PRD Compiler"
+  version: "0.1.0"
+  description: "Compile Spec Kit feature specifications into high-quality, product-manager-friendly PRDs with semantic requirement analysis and bidirectional traceability."
+  category: "docs"
+  effect: "read-write"
+  author: "Spec Kit Community"
+  repository: "https://github.com/github/spec-kit"
+  license: "MIT"
+  homepage: "https://github.com/github/spec-kit"
+
+requires:
+  speckit_version: ">=0.1.0"
+
+provides:
+  commands:
+    - name: "speckit.prd.generate"
+      file: "commands/speckit.prd.generate.md"
+      description: "Generate a product-manager-friendly PRD from the active feature spec.md using semantic requirement analysis."
+      aliases: ["speckit.prd.gen"]
+
+    - name: "speckit.prd.review"
+      file: "commands/speckit.prd.review.md"
+      description: "Review PRD fidelity, completeness, and consistency against spec.md."
+
+  templates:
+    - name: "prd-template"
+      file: "templates/prd-template.md"
+      description: "Standard enterprise and SaaS product requirements document template."
+
+  config:
+    - name: "prd-config.yml"
+      template: "config-template.yml"
+      description: "PRD generator and review policy configuration."
+      required: false
+
+# Auto-generation hooks are intentionally disabled by default in v0.1 to prevent documentation churn.
+# Users can optionally configure hooks in .specify/extensions.yml when ready.
+hooks: {}
+
+tags:
+  - "prd"
+  - "product"
+  - "requirements"
+  - "specification"
+  - "traceability"
+  - "compiler"
+  - "documentation"

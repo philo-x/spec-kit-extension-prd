@@ -1,0 +1,47 @@
+# PRD Extension Configuration
+# Copy this file to .specify/extensions/prd/prd-config.yml to customize settings.
+
+# General settings
+general:
+  # Target language for the generated PRD: "zh-CN" (default), "en", or "auto" (matches spec.md)
+  language: "zh-CN"
+
+# Generation output paths
+output:
+  # Path where the generated PRD should be written.
+  # Available variables: {feature}
+  path: "specs/{feature}/product/prd.md"
+  # Path for consistency review reports
+  review_report_path: "specs/{feature}/product/review-report.md"
+  # Overwrite without interactive confirmation if file already exists
+  overwrite: true
+
+# PRD Compilation Policy
+policy:
+  # Enforce strict three-way separation: Functional Requirements != Business Rules != Acceptance Criteria
+  strict_separation: true
+
+  # Guard against technical implementation leakage (HOW):
+  # Strictly forbid database schemas, SQL queries, internal API endpoints, or specific technical libraries
+  # unless explicitly declared as domain constraints in spec.md.
+  no_how_leakage: true
+
+  # Forbid AI from answering or guessing unresolved questions.
+  # All [NEEDS CLARIFICATION: ...] markers in spec.md must be surfaced verbatim in Section 12.
+  preserve_unresolved: true
+
+  # Generate Section 13 (Requirement Traceability Matrix) mapping all PRD items back to spec.md
+  traceability_matrix: true
+
+  # Conditional section rendering rules:
+  # "auto": Only include if relevant content exists in spec.md; "always": Always include; "never": Omit.
+  conditional_sections:
+    data_and_fields: "auto"        # Section 7: 数据与字段规则
+    permissions_and_state: "auto"  # Section 8: 权限与状态规则
+
+# Review Command Configuration
+review:
+  # Minimum threshold for passing review: "strict" (no warnings/fails) or "standard" (no fails)
+  quality_gate: "standard"
+  # Automatically generate a markdown review report file
+  save_report: true
