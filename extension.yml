@@ -7,10 +7,10 @@ extension:
   description: "Compile Spec Kit feature specifications into high-quality, product-manager-friendly PRDs with semantic requirement analysis and bidirectional traceability."
   category: "docs"
   effect: "read-write"
-  author: "Spec Kit Community"
-  repository: "https://github.com/github/spec-kit"
+  author: "philo-x"
+  repository: "https://github.com/philo-x/spec-kit-extension-prd"
   license: "MIT"
-  homepage: "https://github.com/github/spec-kit"
+  homepage: "https://github.com/philo-x/spec-kit-extension-prd"
 
 requires:
   speckit_version: ">=0.1.0"
